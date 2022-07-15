@@ -1,6 +1,5 @@
 package nl.novi.backendrecipebble.controllers;
-
-import nl.novi.backendrecipebble.models.Account;
+import nl.novi.backendrecipebble.dtos.AccountDto;
 import nl.novi.backendrecipebble.services.AccountService;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,30 +9,30 @@ import java.util.List;
 @RequestMapping("/accounts")
 public class AccountController {
 
-    private AccountService accountService;
+    private final AccountService accountService;
 
     public AccountController(AccountService accountService){
         this.accountService = accountService;
     }
 
     @GetMapping
-    public List<Account> getAllAccounts(){
+    public List<AccountDto> getAllAccounts(){
         return accountService.getAllAccounts();
     }
 
     @GetMapping("/{id}")
-    public Account getAccountById(@PathVariable Long id){
+    public AccountDto getAccountById(@PathVariable Long id){
         return accountService.getAccountById(id);
     }
 
-    @PostMapping("/{id}")
-    public Account saveAccount (@RequestBody Account account){
-        return accountService.saveAccount(account);
+    @PostMapping
+    public AccountDto saveAccount (@RequestBody AccountDto accountDto){
+        return accountService.saveAccount(accountDto);
     }
 
     @PutMapping("/{id}")
-    public Account updateAccount(@PathVariable Long id, @RequestBody Account account){
-        return accountService.updateAccount(account, id);
+    public AccountDto updateAccount(@PathVariable Long id, @RequestBody AccountDto accountDto){
+        return accountService.updateAccount(accountDto, id);
     }
 
     @DeleteMapping("/{id}")

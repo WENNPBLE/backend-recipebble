@@ -1,13 +1,13 @@
 package nl.novi.backendrecipebble.services;
+import nl.novi.backendrecipebble.dtos.RecipeDto;
 
-import nl.novi.backendrecipebble.models.Recipe;
 
 import java.util.List;
 
 public interface RecipeService {
-    List<Recipe> getAllRecipes();
-    Recipe getRecipeById(Long id);
-    Recipe saveRecipe(Recipe recipe);
-    Recipe updateRecipe(Recipe recipe, Long id);
+    List<RecipeDto> getAllRecipes();
+    RecipeDto getRecipeById(Long id);
+    RecipeDto saveRecipe(RecipeDto recipeDto);
+    RecipeDto updateRecipe(RecipeDto recipeDto, Long id);
     void deleteRecipe(Long id);
 }

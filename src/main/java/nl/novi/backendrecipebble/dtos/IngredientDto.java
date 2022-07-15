@@ -1,25 +1,17 @@
-package nl.novi.backendrecipebble.models;
+package nl.novi.backendrecipebble.dtos;
 
+public class IngredientDto {
 
-import javax.persistence.*;
-
-@Entity
-public class Ingredient {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String type;
     private Integer amount;
     private String unit;
 
-    @ManyToOne
-    Recipe recipe;
-
-    public Ingredient() {
+    public IngredientDto() {
     }
 
-    public Ingredient(Long id, String name, String type, Integer amount, String unit) {
+    public IngredientDto(Long id, String name, String type, Integer amount, String unit) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -47,10 +39,6 @@ public class Ingredient {
         return unit;
     }
 
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -69,9 +57,5 @@ public class Ingredient {
 
     public void setUnit(String unit) {
         this.unit = unit;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
     }
 }

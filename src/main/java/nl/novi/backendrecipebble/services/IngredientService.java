@@ -1,13 +1,13 @@
 package nl.novi.backendrecipebble.services;
+import nl.novi.backendrecipebble.dtos.IngredientDto;
 
-import nl.novi.backendrecipebble.models.Ingredient;
 
 import java.util.List;
 
 public interface IngredientService {
-    List<Ingredient> getAllIngredients();
-    Ingredient getIngredientById(Long id);
-    Ingredient saveIngredient(Ingredient ingredient);
-    Ingredient updateIngredient(Ingredient ingredient, Long id);
+    List<IngredientDto> getAllIngredients();
+    IngredientDto getIngredientById(Long id);
+    IngredientDto saveIngredient(IngredientDto ingredientDto);
+    IngredientDto updateIngredient(IngredientDto ingredientDto, Long id);
     void deleteIngredient(Long id);
 }

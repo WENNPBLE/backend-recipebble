@@ -1,13 +1,13 @@
 package nl.novi.backendrecipebble.services;
+import nl.novi.backendrecipebble.dtos.AccountDto;
 
-import nl.novi.backendrecipebble.models.Account;
 
 import java.util.List;
 
 public interface AccountService {
-    List<Account> getAllAccounts();
-    Account getAccountById(Long id);
-    Account saveAccount(Account account);
-    Account updateAccount(Account account, Long id);
+    List<AccountDto> getAllAccounts();
+    AccountDto getAccountById(Long id);
+    AccountDto saveAccount(AccountDto accountDto);
+    AccountDto updateAccount(AccountDto accountDto, Long id);
     void deleteAccount(Long id);
 }

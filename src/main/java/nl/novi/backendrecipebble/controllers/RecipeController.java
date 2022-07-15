@@ -1,5 +1,6 @@
 package nl.novi.backendrecipebble.controllers;
 
+import nl.novi.backendrecipebble.dtos.RecipeDto;
 import nl.novi.backendrecipebble.models.Recipe;
 import nl.novi.backendrecipebble.services.RecipeService;
 import org.springframework.web.bind.annotation.*;
@@ -17,23 +18,23 @@ public class RecipeController {
     }
 
     @GetMapping
-    public List<Recipe> getAllRecipes(){
+    public List<RecipeDto> getAllRecipes(){
         return recipeService.getAllRecipes();
     }
 
     @GetMapping("/{id}")
-    public Recipe getRecipeById(@PathVariable Long id){
+    public RecipeDto getRecipeById(@PathVariable Long id){
         return recipeService.getRecipeById(id);
     }
 
     @PostMapping
-    public Recipe saveRecipe(@RequestBody Recipe recipe){
-        return recipeService.saveRecipe(recipe);
+    public RecipeDto saveRecipe(@RequestBody RecipeDto recipeDto){
+        return recipeService.saveRecipe(recipeDto);
     }
 
     @PutMapping("{id}")
-    public Recipe updateRecipe(@PathVariable Long id, @RequestBody Recipe recipe){
-        return recipeService.updateRecipe(recipe, id);
+    public RecipeDto updateRecipe(@PathVariable Long id, @RequestBody RecipeDto recipeDto){
+        return recipeService.updateRecipe(recipeDto, id);
     }
 
     @DeleteMapping("{id}")

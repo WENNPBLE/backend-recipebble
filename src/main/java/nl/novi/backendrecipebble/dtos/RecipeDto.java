@@ -1,13 +1,7 @@
-package nl.novi.backendrecipebble.models;
+package nl.novi.backendrecipebble.dtos;
 
+public class RecipeDto {
 
-import javax.persistence.*;
-import java.util.List;
-
-@Entity
-public class Recipe {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String meal;
@@ -15,13 +9,10 @@ public class Recipe {
     private String difficulty;
     private String cooking;
 
-    @OneToMany(mappedBy = "recipe")
-    List<Ingredient> ingredient;
-
-    public Recipe() {
+    public RecipeDto() {
     }
 
-    public Recipe(Long id, String name, String meal, Integer time, String difficulty, String cooking) {
+    public RecipeDto(Long id, String name, String meal, Integer time, String difficulty, String cooking) {
         this.id = id;
         this.name = name;
         this.meal = meal;
@@ -54,10 +45,6 @@ public class Recipe {
         return cooking;
     }
 
-    public List<Ingredient> getIngredient() {
-        return ingredient;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -80,9 +67,5 @@ public class Recipe {
 
     public void setCooking(String cooking) {
         this.cooking = cooking;
-    }
-
-    public void setIngredient(List<Ingredient> ingredient) {
-        this.ingredient = ingredient;
     }
 }

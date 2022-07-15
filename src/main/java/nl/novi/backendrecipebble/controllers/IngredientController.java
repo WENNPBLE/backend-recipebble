@@ -1,5 +1,5 @@
 package nl.novi.backendrecipebble.controllers;
-import nl.novi.backendrecipebble.models.Ingredient;
+import nl.novi.backendrecipebble.dtos.IngredientDto;
 import nl.novi.backendrecipebble.services.IngredientService;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,30 +9,30 @@ import java.util.List;
 @RequestMapping("/ingredients")
 public class IngredientController {
 
-    private IngredientService ingredientService;
+    private final IngredientService ingredientService;
 
     public IngredientController(IngredientService ingredientService){
         this.ingredientService = ingredientService;
     }
 
     @GetMapping
-    public List<Ingredient> getAllIngredients(){
+    public List<IngredientDto> getAllIngredients(){
         return ingredientService.getAllIngredients();
     }
 
     @GetMapping("{id}")
-    public Ingredient getIngredientById(@PathVariable Long id){
+    public IngredientDto getIngredientById(@PathVariable Long id){
         return ingredientService.getIngredientById(id);
     }
 
     @PostMapping
-    public Ingredient saveIngredient(@RequestBody Ingredient ingredient){
-        return ingredientService.saveIngredient(ingredient);
+    public IngredientDto saveIngredient(@RequestBody IngredientDto ingredientDto){
+        return ingredientService.saveIngredient(ingredientDto);
     }
 
     @PutMapping("{id}")
-public Ingredient updateIngredient(@PathVariable Long id, @RequestBody Ingredient ingredient){
-        return ingredientService.updateIngredient(ingredient, id);
+public IngredientDto updateIngredient(@PathVariable Long id, @RequestBody IngredientDto ingredientDto){
+        return ingredientService.updateIngredient(ingredientDto, id);
     }
 
     @DeleteMapping("{id}")
