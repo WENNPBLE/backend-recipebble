@@ -2,28 +2,27 @@ package nl.novi.backendrecipebble.models;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Ingredient {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
     private String name;
     private String type;
-    private Integer amount;
     private String unit;
 
-    @ManyToOne
-    Recipe recipe;
+@OneToMany (mappedBy = "ingredient")
+List<RecipeIngredient> recipeIngredients;
 
     public Ingredient() {
     }
 
-    public Ingredient(Long id, String name, String type, Integer amount, String unit) {
+    public Ingredient(Long id, String name, String type,  String unit) {
         this.id = id;
         this.name = name;
         this.type = type;
-        this.amount = amount;
         this.unit = unit;
     }
 
@@ -39,16 +38,12 @@ public class Ingredient {
         return type;
     }
 
-    public Integer getAmount() {
-        return amount;
-    }
-
     public String getUnit() {
         return unit;
     }
 
-    public Recipe getRecipe() {
-        return recipe;
+    public List<RecipeIngredient> getRecipeIngredients() {
+        return recipeIngredients;
     }
 
     public void setId(Long id) {
@@ -63,15 +58,11 @@ public class Ingredient {
         this.type = type;
     }
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
-    }
-
     public void setUnit(String unit) {
         this.unit = unit;
     }
 
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
+    public void setRecipeIngredient(List<RecipeIngredient> recipeIngredients) {
+        this.recipeIngredients = recipeIngredients;
     }
 }

@@ -78,7 +78,6 @@ public class IngredientServiceImpl implements IngredientService {
             ingredient2.setId(ingredient2.getId());
             ingredient2.setName(ingredient.getName());
             ingredient2.setType(ingredient.getType());
-            ingredient2.setAmount(ingredient.getAmount());
             ingredient2.setUnit(ingredient.getUnit());
             return ingredient2;
         } else {
@@ -91,7 +90,6 @@ public class IngredientServiceImpl implements IngredientService {
         ingredientDto.setId(ingredient.getId());
         ingredientDto.setName(ingredient.getName());
         ingredientDto.setType(ingredient.getType());
-        ingredientDto.setAmount(ingredient.getAmount());
         ingredientDto.setUnit(ingredient.getUnit());
         return ingredientDto;
     }
@@ -100,7 +98,6 @@ public class IngredientServiceImpl implements IngredientService {
         Ingredient ingredient = new Ingredient();
         ingredient.setName(ingredientDto.getName());
         ingredient.setType(ingredientDto.getType());
-        ingredient.setAmount(ingredientDto.getAmount());
         ingredient.setUnit(ingredientDto.getUnit());
         return ingredient;
     }

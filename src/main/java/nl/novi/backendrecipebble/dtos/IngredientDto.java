@@ -5,17 +5,16 @@ public class IngredientDto {
     private Long id;
     private String name;
     private String type;
-    private Integer amount;
     private String unit;
 
     public IngredientDto() {
     }
 
-    public IngredientDto(Long id, String name, String type, Integer amount, String unit) {
+    public IngredientDto(Long id, String name, String type, String unit) {
         this.id = id;
         this.name = name;
         this.type = type;
-        this.amount = amount;
+
         this.unit = unit;
     }
 
@@ -29,10 +28,6 @@ public class IngredientDto {
 
     public String getType() {
         return type;
-    }
-
-    public Integer getAmount() {
-        return amount;
     }
 
     public String getUnit() {
@@ -49,10 +44,6 @@ public class IngredientDto {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public void setAmount(Integer amount) {
-        this.amount = amount;
     }
 
     public void setUnit(String unit) {

@@ -3,6 +3,8 @@ package nl.novi.backendrecipebble.services;
 import nl.novi.backendrecipebble.dtos.RecipeDto;
 import nl.novi.backendrecipebble.exceptions.RecordNotFoundException;
 import nl.novi.backendrecipebble.models.Recipe;
+import nl.novi.backendrecipebble.models.RecipeIngredient;
+import nl.novi.backendrecipebble.repositories.AccountRepository;
 import nl.novi.backendrecipebble.repositories.RecipeRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +16,11 @@ import java.util.Optional;
 public class RecipeServiceImpl implements RecipeService {
 
     private final RecipeRepository recipeRepository;
+    private final AccountRepository accountRepository;
 
-    public RecipeServiceImpl(RecipeRepository recipeRepository) {
+    public RecipeServiceImpl(RecipeRepository recipeRepository, AccountRepository accountRepository) {
         this.recipeRepository = recipeRepository;
+        this.accountRepository = accountRepository;
     }
 
     @Override
@@ -45,6 +49,7 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public RecipeDto saveRecipe(RecipeDto recipeDto) {
         Recipe recipe = transferRecipeDtoToRecipe(recipeDto);
+
         Recipe recipe3 = recipeRepository.save(recipe);
         RecipeDto dto = transferRecipeToRecipeDto(recipe3);
         return dto;
@@ -95,6 +100,7 @@ public class RecipeServiceImpl implements RecipeService {
         recipeDto.setTime(recipe.getTime());
         recipeDto.setDifficulty(recipe.getDifficulty());
         recipeDto.setCooking(recipe.getCooking());
+        recipeDto.setUploadedBy(recipe.getAccount().getName());
         return recipeDto;
     }
 
@@ -105,6 +111,20 @@ public class RecipeServiceImpl implements RecipeService {
         recipe.setTime(recipeDto.getTime());
         recipe.setDifficulty(recipeDto.getDifficulty());
         recipe.setCooking(recipeDto.getCooking());
+        recipe.setAccount(accountRepository.getAccountByNameEqualsIgnoreCase(recipeDto.getName()));
         return recipe;
+    }
+
+    public Recipe addRecipeIngredientToRecipeIngredientList(RecipeIngredient recipeIngredient, Long recipeId){
+        Optional<Recipe> optionalRecipe = recipeRepository.findById(recipeId);
+        if(optionalRecipe.isPresent()){
+            Recipe recipe = optionalRecipe.get();
+            List<RecipeIngredient> recipeIngredients = recipe.getRecipeIngredients();
+            recipeIngredients.add(recipeIngredient);
+            recipe.setRecipeIngredients(recipeIngredients);
+            return recipeRepository.save(recipe);
+        } else {
+            throw new RecordNotFoundException();
+        }
     }
 }

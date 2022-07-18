@@ -8,17 +8,19 @@ public class RecipeDto {
     private Integer time;
     private String difficulty;
     private String cooking;
+    private String uploadedBy;
 
     public RecipeDto() {
     }
 
-    public RecipeDto(Long id, String name, String meal, Integer time, String difficulty, String cooking) {
+    public RecipeDto(Long id, String name, String meal, Integer time, String difficulty, String cooking, String uploadedBy) {
         this.id = id;
         this.name = name;
         this.meal = meal;
         this.time = time;
         this.difficulty = difficulty;
         this.cooking = cooking;
+        this.uploadedBy = uploadedBy;
     }
 
     public Long getId() {
@@ -45,6 +47,10 @@ public class RecipeDto {
         return cooking;
     }
 
+    public String getUploadedBy() {
+        return uploadedBy;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -67,5 +73,9 @@ public class RecipeDto {
 
     public void setCooking(String cooking) {
         this.cooking = cooking;
+    }
+
+    public void setUploadedBy(String uploadedBy) {
+        this.uploadedBy = uploadedBy;
     }
 }

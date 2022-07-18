@@ -2,17 +2,22 @@ package nl.novi.backendrecipebble.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 public class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
     private String name;
     private String lastName;
     private String description;
+
+
+    @OneToMany (mappedBy = "account")
+    List<Recipe> recipe;
     
 
     public Account(){
@@ -57,4 +62,5 @@ public class Account {
     public void setDescription(String description) {
         this.description = description;
     }
+
 }

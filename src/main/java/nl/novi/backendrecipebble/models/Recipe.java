@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 public class Recipe {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
     private String name;
     private String meal;
@@ -15,8 +15,13 @@ public class Recipe {
     private String difficulty;
     private String cooking;
 
-    @OneToMany(mappedBy = "recipe")
-    List<Ingredient> ingredient;
+@OneToMany (mappedBy = "recipe")
+List<RecipeIngredient> recipeIngredients;
+
+@ManyToOne
+@JoinColumn(name = "account_recipe")
+private Account account;
+
 
     public Recipe() {
     }
@@ -28,6 +33,17 @@ public class Recipe {
         this.time = time;
         this.difficulty = difficulty;
         this.cooking = cooking;
+    }
+
+    public Recipe(Long id, String name, String meal, Integer time, String difficulty, String cooking, List<RecipeIngredient> recipeIngredients, Account account) {
+        this.id = id;
+        this.name = name;
+        this.meal = meal;
+        this.time = time;
+        this.difficulty = difficulty;
+        this.cooking = cooking;
+        this.recipeIngredients = recipeIngredients;
+        this.account = account;
     }
 
     public Long getId() {
@@ -54,8 +70,12 @@ public class Recipe {
         return cooking;
     }
 
-    public List<Ingredient> getIngredient() {
-        return ingredient;
+    public Account getAccount() {
+        return account;
+    }
+
+    public List<RecipeIngredient> getRecipeIngredients() {
+        return recipeIngredients;
     }
 
     public void setId(Long id) {
@@ -82,7 +102,11 @@ public class Recipe {
         this.cooking = cooking;
     }
 
-    public void setIngredient(List<Ingredient> ingredient) {
-        this.ingredient = ingredient;
+    public void setRecipeIngredients(List<RecipeIngredient> recipeIngredients) {
+        this.recipeIngredients = recipeIngredients;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }
