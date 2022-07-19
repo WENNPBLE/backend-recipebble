@@ -1,6 +1,6 @@
 package nl.novi.backendrecipebble.config;
 
-import nl.novi.backendrecipebble.fliter.JwtRequestFilter;
+import nl.novi.backendrecipebble.filter.JwtRequestFilter;
 import nl.novi.backendrecipebble.services.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

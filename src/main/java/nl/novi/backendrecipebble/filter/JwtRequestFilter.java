@@ -1,4 +1,4 @@
-package nl.novi.backendrecipebble.fliter;
+package nl.novi.backendrecipebble.filter;
 
 import nl.novi.backendrecipebble.services.CustomUserDetailsService;
 import nl.novi.backendrecipebble.utils.JwtUtil;
